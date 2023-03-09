@@ -8,7 +8,6 @@
       chmod +x /tmp/bin/tfsec
 
       /tmp/bin/tfsec {{.Args.Path}} {{if .Args.Exclude}}{{.Args.Exclude}}{{end}} {{if .Args.TFVars}}{{.Args.TFVars}}{{end}}
-      tfsec {{.Args.Path}} {{if .Args.Exclude}}{{.Args.Exclude}}{{end}} {{if .Args.TFVars}}{{.Args.TFVars}}{{end}}
     args:
     - name: "path"
       argkey: "Path"
