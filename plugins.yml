@@ -1,0 +1,23 @@
+---
+- name: TFSEC
+  commands:
+  - commandname: "scan"
+  - commandtemplate: "tfsec {{.Args.Path}} {{if .Args.Exclude}}{{.Args.Exclude}}{{end}} {{if .Args.TFVars}}{{.Args.TFVars}}{{end}}"
+  - args:
+    - name: "path"
+      argkey: "Path"
+      default: "."
+    - name: "exclude"
+      argkey: "Exclude"
+      default: ""
+    - name: "tfvars-filepath"
+      argkey: "TFVars"
+      default: ""
+- name: ECHO
+  commands:
+  - commandname: "echo"
+  - commandtemplate: "echo {{.Args.Input}}"
+  - args:
+    - name: "input"
+      argkey: "Input"
+      default: ""
