@@ -2,14 +2,14 @@
 - name: TFSEC
   commands:
   - commandname: "scan"
-  - commandtemplate: |
+    commandtemplate: |
       mkdir -p /tmp/bin
       wget -O /tmp/bin/tfsec https://github.com/aquasecurity/tfsec/releases/download/v1.28.1/tfsec-linux-amd64
       chmod +x /tmp/bin/tfsec
 
       /tmp/bin/tfsec {{.Args.Path}} {{if .Args.Exclude}}{{.Args.Exclude}}{{end}} {{if .Args.TFVars}}{{.Args.TFVars}}{{end}}
       tfsec {{.Args.Path}} {{if .Args.Exclude}}{{.Args.Exclude}}{{end}} {{if .Args.TFVars}}{{.Args.TFVars}}{{end}}
-  - args:
+    args:
     - name: "path"
       argkey: "Path"
       default: "."
@@ -25,8 +25,8 @@
 - name: ECHO
   commands:
   - commandname: "echo"
-  - commandtemplate: "echo {{.Args.Input}}"
-  - args:
+    commandtemplate: "echo {{.Args.Input}}"
+    args:
     - name: "input"
       argkey: "Input"
       default: ""
