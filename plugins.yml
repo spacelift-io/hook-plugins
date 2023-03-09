@@ -2,7 +2,13 @@
 - name: TFSEC
   commands:
   - commandname: "scan"
-  - commandtemplate: "tfsec {{.Args.Path}} {{if .Args.Exclude}}{{.Args.Exclude}}{{end}} {{if .Args.TFVars}}{{.Args.TFVars}}{{end}}"
+  - commandtemplate: |
+      mkdir -p /tmp/bin
+      wget -O /tmp/bin/tfsec https://github.com/aquasecurity/tfsec/releases/download/v1.28.1/tfsec-linux-amd64
+      chmod +x /tmp/bin/tfsec
+
+      /tmp/bin/tfsec {{.Args.Path}} {{if .Args.Exclude}}{{.Args.Exclude}}{{end}} {{if .Args.TFVars}}{{.Args.TFVars}}{{end}}
+      tfsec {{.Args.Path}} {{if .Args.Exclude}}{{.Args.Exclude}}{{end}} {{if .Args.TFVars}}{{.Args.TFVars}}{{end}}"
   - args:
     - name: "path"
       argkey: "Path"
@@ -13,6 +19,9 @@
     - name: "tfvars-filepath"
       argkey: "TFVars"
       default: ""
+    - name: "version"
+      argkey: "Version"
+      default: "latest"
 - name: ECHO
   commands:
   - commandname: "echo"
